@@ -22,6 +22,11 @@ body, html {
 a {
 	cursor: pointer;
 	text-decoration: none;
+	color: #FFFFFF;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .light {
@@ -41,10 +46,10 @@ section.header {
 	padding: 40px 0 20px 0;
 	text-align: center;
 	background-color: #E6195E;
+	color: #FFFFFF;
 }
 
 .title {
-	color: #FFFFFF;
 	font-size: 4rem;
 	line-height: 4rem;
 	font-weight: 700;
@@ -60,9 +65,19 @@ section.header {
 }
 
 .tag {
-	color: #FFFFFF;
-	font-size: 1.4rem;
-	font-weight: 300;
+	font-size: 1rem;
+}
+
+@media (min-width: 50rem) {
+	.tag {
+		font-size: 1.4rem;
+	}
+}
+
+@media (min-width: 70rem) {
+	.tag {
+		font-size: 1.6rem;
+	}
 }
 
 .search .artist {
@@ -74,18 +89,11 @@ section.header {
 	padding: 5px 10px;
 	border-radius: 10px;
 	border-width: 1px;
+	color: #333333;
 }
 
 .search .artist:focus {
 	outline: 0;
-}
-
-@media (min-width: 50rem) {
-	
-}
-
-@media (min-width: 70rem) {
-
 }
 
 /** Autocomplete
@@ -144,7 +152,7 @@ section.header {
 .artist-name-container {
   padding-left: 80px;
   line-height: 60px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 300;
 }
 
@@ -153,11 +161,15 @@ section.header {
 }
 
 @media (min-width: 50rem) {
-
+	.artist-name-container {
+	  font-size: 1.2rem;
+	}
 }
 
 @media (min-width: 70rem) {
-
+	.artist-name-container {
+	  font-size: 1.4rem;
+	}
 }
 
 /** Content
@@ -167,7 +179,96 @@ section.content {
 	text-align: center;
 }
 
+section.content .tag {
+	margin: 40px 0;
+}
+
 .artist-name {
 	font-style: italic;
 }
 
+#album-container {
+	min-width: 300px;
+	margin: auto;
+	color: #FFFFFF;
+}
+
+.album {
+	margin: auto;
+	min-width: 300px;
+	display: inline-block;
+	padding: 0;
+	background-color: #E6195E;
+}
+
+.album-image {
+	vertical-align: middle;
+	float: left;
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	padding: 20px;
+}
+
+.album-text {
+	float: left;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+.album-info {
+	display: inline-block;
+	min-width: 200px;
+	text-align: left;
+	line-height: 30px;
+}
+
+.album-name {
+	margin-top: 20px;
+	font-size: 1.4rem;
+	line-height: 50px;
+}
+
+.button {
+	display: block;
+	font-weight: 700;
+	background-color: #E6195E;
+	margin-top: 0;
+	padding: 0 10px 10px 10px;
+}
+
+@media (min-width: 50rem) {
+	.album {
+		padding: 12px;
+	}
+
+	.album-image {
+		margin-right: 12px;
+	}
+
+	.album-name {
+		font-size: 1.6rem;
+	}
+
+	.button {
+		margin-top: 12px;
+	}
+}
+
+@media (min-width: 70rem) {
+	.album {
+		padding: 20px;
+	}
+
+	.album-image {
+		margin-right: 20px;
+	}
+
+	.album-name {
+		font-size: 2rem;
+	}
+
+	.button {
+		margin-top: 20px;
+	}
+}

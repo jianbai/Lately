@@ -35,15 +35,17 @@
 	 				<div data-icon="ei-clock" data-size="m" class="icon"></div>
 	 				<p>late<span class="light">ly</span></p>
 	 			</div>
- 				<p class="tag">Find any artist's most recent album on Spotify</p>
+ 				<p class="tag">Find any artist's most recent work on Spotify</p>
  				<form class="search" id="form">
- 					<input data-bind="value: artistName" class="artist" id="search-input" placeholder="Search for an artist">
+ 					<input data-bind="textInput: artistName" class="artist" id="search-input" placeholder="Search for an artist">
  				</form>
  			</div>
   	</section>
   	<section class="content">
   		<div class="container">
-  			<p>What has <span data-bind="text: artistName" class="artist-name">blank</span> done lately?</p>
+  			<p class="tag">What has <span data-bind="text: artistName" class="artist-name">blank</span> done lately?</p>
+  			<div id="album-container">
+  			</div>
  			</div>
   	</section>
 

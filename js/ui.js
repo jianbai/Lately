@@ -3,29 +3,29 @@
 	console.log("BLAH");
 
 	var api = new SpotifyWebApi();
-	var complete = true;
+	// var complete = true;
 
 	function ContentModel() {
-		this.artistName = ko.observable("blank");
+		this.artistName = ko.observable("that random artist I was just thinking of");
 	}
-
-	ko.applyBindings(new ContentModel());
-	$('#search-input').val("");
 
 	window.addEventListener('load', function () {
 		var form = document.getElementById('form');
 		form.addEventListener('submit', function (error) {
 			console.log("HEY");
-			complete = false;
+			// complete = false;
 			error.preventDefault();
-			var search = document.getElementById('search-input');
-			api.searchArtists(
-				search.value.trim(),
-				function (data) {
-					if (data.artists && data.artists.items.length) {
-						showLatestAlbum(data.artists.items[0]);
-					}
-				});
+			// var search = document.getElementById('search-input');
+			// api.searchArtists(
+			// 	search.value.trim(),
+			// 	function (data) {
+			// 		if (!data) {
+			// 			return;
+			// 		}
+			// 		if (data.artists && data.artists.items.length) {
+			// 			showLatestAlbum(data.artists.items[0]);
+			// 		}
+			// 	});
 		}, false);
 	}, false);
 
@@ -35,18 +35,33 @@
     }
     var html = '<div class="autocomplete-item">' +
       '<div class="artist-icon-container">' +
-      '<img src="' + getArtistImage(artist.images) + '" class="artist-icon" />' +
+      '<img src="' + getImage(artist.images) + '" class="artist-icon" />' +
       '<div class="artist-name-container">' + artist.name + '</div>' +
       '</div>' +
       '</div>';
     return html;
   }
 
-  function createProgressSpinner() {
-  	return '<div data-icon="ei-spinner" data-size="xxl" class="spinner"></div>';
+  function createAlbumDiv(album) {
+  	console.log(album);
+  	if (!album) {
+      return;
+    }
+    var html = 
+    	'<div class="album">' +
+      	'<div class="album-info">' +
+      		'<img src="' + getImage(album.images) + '" class="album-image" />' +
+      		'<div class="album-text">' +
+      			'<div class="album-name">' + album.name + '</div>' +
+      			'<div class="album-details">' + getDateString(album) + '</div>' +
+      		'</div>' +
+      	'</div>' +
+      	'<div class="button"><a href="' + album.external_urls.spotify + '">Listen to ' + contentModel.artistName() + ' on Spotify</a></div>' +
+      '</div>';
+    return html;
   }
 
-  function getArtistImage(images) {
+  function getImage(images) {
   	var minDimen = 54;
   	if (images.length == 0) {
   		return 'images/Icon.png';
@@ -63,15 +78,20 @@
   	console.log(artist.name);
   	var albumIds = [];
   	var albums = [];
-  	api.getArtistAlbums(artist.id, {'limit': 50, 'album_type': 'album'}, function (error, data) {
-			data.items.forEach(function (album) {
-				albumIds.push(album.id);
-			});
-			console.log(albumIds);
-			api.getAlbums(albumIds, {}, function (error, data) {
-				console.log(data);
-				console.log(getMostRecentAlbum(data.albums));
-			});
+  	api.getArtistAlbums(artist.id, {'limit': 20, 'album_type': 'album'}, function (error, data) {
+			if (error == null) {
+				data.items.forEach(function (album) {
+					albumIds.push(album.id);
+				});
+				console.log(albumIds);
+				api.getAlbums(albumIds, {}, function (error, data) {
+					if (error == null) {
+						var mostRecentAlbum = getMostRecentAlbum(data.albums);
+						$('#album-container').empty();
+						$('#album-container').append(createAlbumDiv(mostRecentAlbum));
+					}
+				});
+			}
 		});
   }
 
@@ -116,6 +136,50 @@
   	return parseInt(album.release_date.substr(8,2)) || 0;
   }
 
+  function getDateString(album) {
+  	switch(album.release_date_precision) {
+  		case "year":
+  			return album.release_date;
+  		case "month":
+  			return monthToString(parseInt(album.release_date.substr(5,2))) + " " + parseInt(album.release_date);
+  		case "day":
+  			return monthToString(parseInt(album.release_date.substr(5,2))) + " " + album.release_date.substr(8,2) + ", " + parseInt(album.release_date);
+  		default:
+  			return "";
+  	}
+  }
+
+  function monthToString(month) {
+  	switch(month) {
+  		case 1:
+  			return "January";
+  		case 2:
+  			return "February";
+  		case 3:
+  			return "March";
+  		case 4:
+  			return "April";
+  		case 5:
+  			return "May";
+  		case 6:
+  			return "June";
+  		case 7:
+  			return "July";
+  		case 8:
+  			return "August";
+  		case 9:
+  			return "September";
+  		case 10:
+  			return "October";
+  		case 11:
+  			return "November";
+  		case 12:
+  			return "December";
+  		default:
+  			return "";
+  	}
+  }
+
   $(function () {
   	$('#search-input')
   		.autocomplete({
@@ -128,11 +192,11 @@
   							data.artists.items.forEach(function (artist) {
   								result.push(artist);
   							});
-  							if (complete) {
-  								response(result);
-  							} else {
-  								response([]);
-  							}
+  							// if (true) {
+								response(result);
+  							// } else {
+  							// 	response([]);
+  							// }
   						}
   					}, function (error) {
   						return;
@@ -143,6 +207,7 @@
   			},
   			select: function (event, ui) {
   				$('#search-input').val(ui.item.name);
+  				contentModel.artistName(ui.item.name);
   				showLatestAlbum(ui.item);
   				return false;
   			}
@@ -152,15 +217,15 @@
   				console.log("NO ITEM");
   				return;
   			}
-  			console.log("ITEM");
   			return $('<li></li>')
   				.data('item.autocomplete', item)
   				.append(createAutoCompleteDiv(item))
   				.appendTo(ul);
   		};
   })
+	
+	var contentModel = new ContentModel();
+	ko.applyBindings(contentModel);
+	$('#search-input').val("");
 
 })();
-
-
-
