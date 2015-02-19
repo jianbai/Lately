@@ -1,0 +1,173 @@
+/** Fonts
+--------------------------------------------- **/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700);
+
+/** Main styles
+--------------------------------------------- **/
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body, html {
+  font: 100%/1.5 'Roboto';
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: #333333;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.light {
+	font-weight: 300;
+}
+
+section {
+	width: 100vw;
+	display: block;
+	position: relative;
+}
+
+/** Header
+--------------------------------------------- **/
+
+section.header {
+	padding: 40px 0 20px 0;
+	text-align: center;
+	background-color: #E6195E;
+}
+
+.title {
+	color: #FFFFFF;
+	font-size: 4rem;
+	line-height: 4rem;
+	font-weight: 700;
+}
+
+.title * {
+	display: inline-block;
+}
+
+.icon {
+	fill: #FFFFFF;
+	right: -20px;
+}
+
+.tag {
+	color: #FFFFFF;
+	font-size: 1.4rem;
+	font-weight: 300;
+}
+
+.search .artist {
+	width: 50vw;
+	min-width: 300px;
+	line-height: 2rem;
+	font-size: 1rem;
+	margin: 20px 0 40px 0;
+	padding: 5px 10px;
+	border-radius: 10px;
+	border-width: 1px;
+}
+
+.search .artist:focus {
+	outline: 0;
+}
+
+@media (min-width: 50rem) {
+	
+}
+
+@media (min-width: 70rem) {
+
+}
+
+/** Autocomplete
+--------------------------------------------- **/
+
+.ui-autocomplete {
+  max-height: 400px;
+  max-width: 50vw;
+  min-width: 300px;
+  overflow-y: auto;
+  overflow-x: auto;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #E6195E;
+}
+
+.ui-autocomplete:hover {
+	cursor: pointer;
+}
+
+.autocomplete-item {
+  height: 60px;
+  min-width: 300px;
+  padding: 10px;
+  background-color: #FFFFFF;
+}
+
+.autocomplete-item:hover {
+	background-color: #E6195E;
+	color: #FFFFFF;
+}
+
+.artist-icon-container {
+  padding-top: 3px;
+  padding-left: 10px;
+}
+
+.artist-icon {
+  vertical-align: middle;
+  float: left;
+  object-fit: none;
+  object-position: center;
+  height: 54px;
+  width: 54px;
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #E6195E;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+}
+
+.artist-name-container {
+  padding-left: 80px;
+  line-height: 60px;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.ui-helper-hidden-accessible {
+	display: none;
+}
+
+@media (min-width: 50rem) {
+
+}
+
+@media (min-width: 70rem) {
+
+}
+
+/** Content
+--------------------------------------------- **/
+
+section.content {
+	text-align: center;
+}
+
+.artist-name {
+	font-style: italic;
+}
+
