@@ -1,0 +1,137 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	background-color: #f3f3f3;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.618em;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#down {
+	text-align: center;
+	margin-top: 60px;
+}
+
+#downIcon {
+	font-size: 4em;
+	cursor: pointer;
+  	-o-transition:.8s;
+  	-ms-transition:.8s;
+  	-moz-transition:.8s;
+  	-webkit-transition:.8s;
+  	transition:.8s;
+}
+
+#downIcon:hover {
+	color: #AFB9CA;
+}
+
+.smoothScroll {
+	color: black;
+}
+
+#headline {
+	margin-top: 50px;
+}
+
+#content {
+	margin-top: 10px;
+}
+
+#content a {
+	background-color: #E3E3E3;
+	color: #7B8989;
+	text-decoration: none;
+	border-radius: 2px;
+}
+
+.gray {
+	width: 100%;
+	height: 200px;
+	background-color: #AFB9CA;
+}
+
+#topBanner {
+	margin-top: 300px;
+	height: 250px;
+}
+
+#bottomBanner {
+	padding-top: 40px;
+	margin-top: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#bottomBanner a {
+	background: #AFB9CA;
+	top: 150px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#bottomBanner i {
+	font-size: 4em;
+	padding: 0.25em;
+	border: 3px solid #AFB9CA;
+	border-radius: 50%;
+	color: #f3f3f3;
+	background: #AFB9CA;
+	-o-transition:.8s;
+  	-ms-transition:.8s;
+  	-moz-transition:.8s;
+  	-webkit-transition:.8s;
+  	transition:.8s;
+}
+
+#bottomBanner i:hover {
+	font-size: 4em;
+	padding: 0.25em;
+	border: 3px solid #f3f3f3;
+	border-radius: 50%;
+	color: #AFB9CA;
+	background: #f3f3f3;
+}
