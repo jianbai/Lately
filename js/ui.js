@@ -1,33 +1,10 @@
 (function () {
 
-	console.log("BLAH");
-
 	var api = new SpotifyWebApi();
-	// var complete = true;
 
 	function ContentModel() {
 		this.artistName = ko.observable("that random artist I was just thinking of");
 	}
-
-	window.addEventListener('load', function () {
-		var form = document.getElementById('form');
-		form.addEventListener('submit', function (error) {
-			console.log("HEY");
-			// complete = false;
-			error.preventDefault();
-			// var search = document.getElementById('search-input');
-			// api.searchArtists(
-			// 	search.value.trim(),
-			// 	function (data) {
-			// 		if (!data) {
-			// 			return;
-			// 		}
-			// 		if (data.artists && data.artists.items.length) {
-			// 			showLatestAlbum(data.artists.items[0]);
-			// 		}
-			// 	});
-		}, false);
-	}, false);
 
 	function createAutoCompleteDiv(artist) {
     if (!artist) {
@@ -43,7 +20,6 @@
   }
 
   function createAlbumDiv(album) {
-  	console.log(album);
   	if (!album) {
       return;
     }
@@ -75,7 +51,6 @@
   }
 
   function showLatestAlbum(artist) {
-  	console.log(artist.name);
   	var albumIds = [];
   	var albums = [];
   	api.getArtistAlbums(artist.id, {'limit': 20, 'album_type': 'album'}, function (error, data) {
@@ -83,19 +58,18 @@
 				data.items.forEach(function (album) {
 					albumIds.push(album.id);
 				});
-				console.log(albumIds);
 				api.getAlbums(albumIds, {}, function (error, data) {
 					if (error == null) {
-						var mostRecentAlbum = getMostRecentAlbum(data.albums);
+						var latestAlbum = getLatestAlbum(data.albums);
 						$('#album-container').empty();
-						$('#album-container').append(createAlbumDiv(mostRecentAlbum));
+						$('#album-container').append(createAlbumDiv(latestAlbum));
 					}
 				});
 			}
 		});
   }
 
-  function getMostRecentAlbum(albums) {
+  function getLatestAlbum(albums) {
   	var best = albums[0];
 
   	for (var i=1; i<albums.length; i++) {
@@ -192,11 +166,7 @@
   							data.artists.items.forEach(function (artist) {
   								result.push(artist);
   							});
-  							// if (true) {
 								response(result);
-  							// } else {
-  							// 	response([]);
-  							// }
   						}
   					}, function (error) {
   						return;
@@ -214,7 +184,6 @@
   		})
   		.autocomplete('instance')._renderItem = function(ul, item) {
   			if (!item) {
-  				console.log("NO ITEM");
   				return;
   			}
   			return $('<li></li>')
